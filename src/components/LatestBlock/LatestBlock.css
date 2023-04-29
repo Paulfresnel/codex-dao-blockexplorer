@@ -1,0 +1,30 @@
+
+.latest-block{
+    
+    margin: 0 auto;
+    border: 1px rgb(50, 78, 231) solid;
+    width: 75%;
+    padding: 40px;
+    border-radius: 75px 5px 75px 5px;
+    margin-top: 55px;
+}
+
+.flex-row-icons{
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+}
+
+.flex-row-icons i {
+    font-size: 1.5rem;
+    color: rgb(50, 78, 231);
+}
+
+table td {
+    text-align: left;
+}
+
+.bordered{
+    border: 1px solid black;
+}

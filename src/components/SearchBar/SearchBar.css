@@ -1,0 +1,38 @@
+
+.large-input{
+    width: 500px;
+}
+
+
+
+@keyframes enlarge{
+    0%{
+        border: 1px black solid;
+    }
+    50%{
+        box-shadow: 2px 2px 15px rgb(50, 78, 231) ;
+    }
+    100%{
+        border: 1px black solid;
+    }
+}
+
+.large-input:hover{
+    animation: enlarge 1s infinite linear;
+}
+
+.bi-search{
+    margin-right: 15px;
+}
+
+.search-btn{
+    padding: 5px;
+    margin-left: 20px;
+    background-color: rgb(50, 78, 231);
+}
+
+.form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
