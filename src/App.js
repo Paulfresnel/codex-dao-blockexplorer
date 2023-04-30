@@ -6,6 +6,8 @@ import TransactionPage from './pages/TransactionPage/TransactionPage';
 import ErrorPage from './pages/ErrorPage/ErrorPage';
 
 import './App.css';
+import HomePage from './pages/HomePage/HomePage';
+import AddressPage from './pages/AddressPage/AddressPage';
 
 
 const settings = {
@@ -26,7 +28,8 @@ function App() {
     <div className='margined-t'>
   <Routes>
   <Route path={"*"} element={<ErrorPage/>}/>
-  <Route path={"/"} element={<LatestBlock alchemy={alchemy}/>}/>
+  <Route path={"/"} element={<HomePage alchemy={alchemy}/>}/>
+  <Route path={"/address/:addressId"} element={<AddressPage alchemy={alchemy}/>}/>
   <Route path={"/tx/:txId"} element={<TransactionPage alchemy={alchemy}/>}/>
   </Routes>
   </div>

@@ -17,6 +17,10 @@
     box-shadow: 2px 2px 10px #0099ff;
 }
 
+.main{
+    margin-bottom: 25px;
+}
+
 .badge{
     margin-left: 15px;
     height: 25px;
@@ -32,13 +36,26 @@
     font-size: 1.1rem;
 }
 
+.money-value-fee{
+    height: 38px;
+    font-size: 1.05rem;
+}
+
+.fee-box{
+    background-color: rgb(157, 250, 163);
+}
+
 .divider{
-    width: 75%;
+    width: 85%;
     margin: 0 auto;
     height: 1px;
-    border: 1px #0099ff solid;
+    border-bottom: 1px #0099ff solid;
     margin-top: 20px;
     margin-bottom: 30px;
+}
+
+.bi-check{
+    margin-right: 5px;
 }
 
 .highlight{

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams} from 'react-router-dom'
+import { useParams, Link} from 'react-router-dom'
 import { MutatingDots } from 'react-loader-spinner';
 import "./TransactionPage.css"
 import ClipboardJS from 'clipboard';
@@ -19,6 +19,8 @@ function TransactionPage(props){
     const [txBlockNumber, setTxBlockNumber] = useState(0);
     const [txValue, setTxValue] = useState(0);
     const [ethPrice, setEthPrice] = useState(1900);
+    const [txStatus, setTxStatus] = useState(0);
+    const [txCost, setTxCost] = useState(0);
     const {alchemy} = props;
     const {txId} = useParams();
 
@@ -27,6 +29,20 @@ function TransactionPage(props){
         The receiving party of the transaction (could be a contract address).
     </Tooltip>);
 
+    const renderTxStatusTip = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+        The status of the transaction.
+    </Tooltip>);
+
+    const renderTxTypeTip = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+       Indicates if the transaction if a simple Transfer between Accounts or if it's a smart contract call.
+    </Tooltip>);
+
+    const renderTxFeeTip = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+        Amount paid to the block producer for processing the transaction.
+    </Tooltip>);
 
     const renderFromTip = (props) => (
     <Tooltip id="button-tooltip" {...props}>
@@ -60,7 +76,17 @@ function TransactionPage(props){
 
     useEffect(()=>{
 
-        
+        let fetchTxReceipt = async (txId) =>{
+            const txReceipt = await alchemy.core.getTransactionReceipt(txId);
+            console.log("tx receipt:",txReceipt)
+            setTxStatus(txReceipt.status);
+            let gasUsed = parseInt(txReceipt.gasUsed._hex);
+            let gasPrice = parseInt(txReceipt.effectiveGasPrice._hex);
+            let txCostWei = gasUsed * gasPrice;
+            let txCostETH = txCostWei/(10**18);
+            console.log("txCost:", txCost);
+            setTxCost(txCostETH);
+        }
 
         let fetchTx = async (txId) =>{
             const txResponse = await alchemy.transact.getTransaction(txId);
@@ -92,12 +118,13 @@ function TransactionPage(props){
         }
 
         fetchLatestBlock();
+        fetchTxReceipt(txId);
         fetchTx(txId);
     }, [])
 
     return (
         <div>
-    <h1>Transaction Details</h1>
+    <h1 className='main'>Transaction Details</h1>
     {isLoading && <div className='centered'>
     <MutatingDots 
     className="centered"
@@ -119,11 +146,22 @@ function TransactionPage(props){
                 <OverlayTrigger placement="right" delay={{ show: 250, hide: 400 }}overlay={renderTxHashTip}>
                     <i class="bi bi-info-circle icon-m-r"></i>
                 </OverlayTrigger>
-            <p>Tx Hash: </p>
+            <p>Transaction Hash: </p>
             </div>
             <div className='tx-flex-row-internal'>
                 <p>{tx.hash}</p>
                 <i class="bi bi-clipboard-check clipboarded" data-clipboard-text={tx.hash}></i>
+            </div>
+        </div>
+        <div className='tx-flex-row'>
+            <div className='tx-flex-row-internal'>
+                <OverlayTrigger placement="right" delay={{ show: 250, hide: 400 }}overlay={renderTxStatusTip}>
+                    <i class="bi bi-info-circle icon-m-r"></i>
+                </OverlayTrigger>
+            <p>Transaction Status: </p>
+            </div>
+            <div className='tx-flex-row-internal'>
+                <p>{txStatus === 1 ? <Badge className='badge' bg="success"> <i class="bi bi-check"></i>Success </Badge> : <Badge className='badge' bg="danger"> Failure </Badge>}</p>
             </div>
         </div>
         <div className='tx-flex-row'>
@@ -147,10 +185,21 @@ function TransactionPage(props){
             </div>
             <div className='tx-flex-row-internal'>
                 <p>{txDate}</p>
-                <Badge className='badge' bg="info"><span className='highlight'>{(latestBlock-txBlockNumber).toLocaleString("en-US")} </span>blocks ago</Badge>{' '}
+                <Badge className='badge' bg="info"><span className='highlight'>{(latestBlock-txBlockNumber).toLocaleString("en-US")} blocks ago </span></Badge>{' '}
             </div>
         </div>
         <div className='divider'/>
+        <div className='tx-flex-row'>
+            <div className='tx-flex-row-internal'>
+                <OverlayTrigger placement="right" delay={{ show: 250, hide: 400 }}overlay={renderTxTypeTip}>
+                    <i class="bi bi-info-circle icon-m-r"></i>
+                </OverlayTrigger>
+            <p>Type: </p>
+            </div>
+            <div className='tx-flex-row-internal'>
+                <p>{tx.data === '0x0' ? "Transfer" : "Smart Contract Call"}</p>
+            </div>
+        </div>
         <div className='tx-flex-row'>
             <div className='tx-flex-row-internal'>
                 <OverlayTrigger placement="right" delay={{ show: 250, hide: 400 }}overlay={renderFromTip}>
@@ -159,7 +208,7 @@ function TransactionPage(props){
             <p>From: </p>
             </div>
             <div className='tx-flex-row-internal'>
-                <p>{tx.from}</p>
+                <p><Link to={`/address/${tx.from}`}>{tx.from}</Link></p>
                 <i class="bi bi-clipboard-check clipboarded" data-clipboard-text={tx.from}></i>
             </div>
         </div>
@@ -171,7 +220,7 @@ function TransactionPage(props){
             <p>To: </p>
             </div>
             <div className='tx-flex-row-internal'>
-                <p>{tx.to}</p>
+                <p><Link to={`/address/${tx.to}`}>{tx.to}</Link></p>
                 <i class="bi bi-clipboard-check clipboarded" data-clipboard-text={tx.to}></i>
             </div>
         </div>
@@ -185,8 +234,20 @@ function TransactionPage(props){
             </div>
             <div className='tx-flex-row-internal'>
                 <p>{txValue/(10**18)} ETH</p>
-                <Badge bg="success"><span className='money-value'>($ {((txValue/(10**18))*ethPrice).toFixed(2)})</span></Badge>
+                <Badge bg="success"><span className='money-value'> $ {((txValue/(10**18))*ethPrice).toFixed(2)} </span></Badge>
                 <i onClick={()=>fetchETHPrice()} class="bi bi-arrow-clockwise icon-m-l"></i>
+            </div>
+        </div>
+        <div className='tx-flex-row'>
+            <div className='tx-flex-row-internal'>
+                <OverlayTrigger placement="right" delay={{ show: 250, hide: 400 }}overlay={renderTxFeeTip}>
+                    <i class="bi bi-info-circle icon-m-r"></i>
+                </OverlayTrigger>
+            <p>Transaction Fee: </p>
+            </div>
+            <div className='tx-flex-row-internal'>
+                <p>{txCost} ETH</p>
+                <Badge className='fee-box' bg="secondary"><span className='money-value-fee'> $ {(txCost * ethPrice).toFixed(2)} </span></Badge>
             </div>
         </div>
      </div>}

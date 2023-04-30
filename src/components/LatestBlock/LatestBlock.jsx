@@ -4,6 +4,7 @@ import "./LatestBlock.css";
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import Spinner from 'react-bootstrap/Spinner';
 import Table from 'react-bootstrap/Table';
+import { MutatingDots } from "react-loader-spinner";
 
 
 
@@ -98,7 +99,18 @@ function LatestBlock(props){
 
     return(
         <div>
-        {isLoading && <Spinner animation="border" variant="primary" />}
+        {isLoading && <MutatingDots 
+         className="centered"
+           height="100"
+           width="100"
+           color="#6d83ff"
+           secondaryColor= '#0099ff'
+           radius='12.5'
+           ariaLabel="mutating-dots-loading"
+           wrapperStyle={{}}
+           wrapperClass=""
+           visible={true}
+        />}
         {!isLoading && <div><h2>Latest Mined Blocks</h2>
         <div className="flex-row-icons">
         <i onClick={prevBlock} className="bi bi-arrow-left-circle-fill"></i>
