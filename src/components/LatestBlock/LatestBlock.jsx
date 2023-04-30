@@ -34,7 +34,7 @@ function LatestBlock(props){
         month: "2-digit", 
         year: "numeric"
       }
-      let blockDate = dateObject.toLocaleTimeString('en-US', format)
+      let blockDate = dateObject.toLocaleTimeString('en-US', format);
       let baseFeePerGas = blockInfo.baseFeePerGas._hex;
       let burntFees = (baseFeePerGas * parseInt(blockInfo.gasUsed._hex))/(10**18);
       setBurntFees(burntFees);
