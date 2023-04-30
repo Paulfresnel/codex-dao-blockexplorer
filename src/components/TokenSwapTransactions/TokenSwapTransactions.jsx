@@ -1,22 +1,19 @@
-import { useEffect, useState } from "react";
-import { Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Table } from "react-bootstrap";
 
-function InternalTransactions(props){
-
-    const {alchemy, allTransfers, addressId} = props;
-    const [internalTransfers, setInternalTransfers] = useState([]);
-
+function TokenSwapTransactions(props){
+    const [swapTransactions, setSwapTransactions] = useState([]);
+    const {allTransfers} = props;
 
     useEffect(()=>{
-     let filteredTransfers = allTransfers.filter(transfer=>{
-     if (transfer.category === 'internal'){
-         return transfer;
-     }
-     })
-     setInternalTransfers(filteredTransfers);
-    }, [allTransfers]);
-    
+        let filteredTransactions = allTransfers.filter(transfer=>{
+            if (transfer.category.includes('Token')){
+                return transfer;
+            }
+        });
+        setSwapTransactions(filteredTransactions);
+    }, [])
 
     return(
         <div>
@@ -33,12 +30,12 @@ function InternalTransactions(props){
                 </tr>
             </thead>
             <tbody>
-                {internalTransfers.map( (transfer,index)=>{
+                {swapTransactions.map( (transfer,index)=>{
                     if (transfer.value === null){
                         transfer.value = "-"
                     }
                 return (
-                <tr key={index} className="table-row">
+                <tr key={"0xea"+index+1+"6xea7"} className="table-row">
                     <td><Link to={`/tx/${transfer.hash}`}>{transfer.hash.slice(0,20)+"..."}</Link></td>
                     <td>{parseInt(transfer.blockNum).toLocaleString('en-US')}</td>
                     <td>{transfer.category}</td>
@@ -52,6 +49,8 @@ function InternalTransactions(props){
         </Table>
         </div>
     )
+
+
 }
 
-export default InternalTransactions;
+export default TokenSwapTransactions

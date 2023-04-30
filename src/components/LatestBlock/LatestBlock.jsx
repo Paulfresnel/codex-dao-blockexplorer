@@ -99,8 +99,7 @@ function LatestBlock(props){
 
     return(
         <div>
-        {isLoading && <MutatingDots 
-         className="centered"
+        {isLoading && <div className="centered"><MutatingDots 
            height="100"
            width="100"
            color="#6d83ff"
@@ -110,7 +109,7 @@ function LatestBlock(props){
            wrapperStyle={{}}
            wrapperClass=""
            visible={true}
-        />}
+        /></div>}
         {!isLoading && <div><h2>Latest Mined Blocks</h2>
         <div className="flex-row-icons">
         <i onClick={prevBlock} className="bi bi-arrow-left-circle-fill"></i>

@@ -1,23 +1,22 @@
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
-import { Link } from "react-router-dom";
 
-function InternalTransactions(props){
+function NftTransactions(props){
 
-    const {alchemy, allTransfers, addressId} = props;
-    const [internalTransfers, setInternalTransfers] = useState([]);
+    const {allTransfers} = props;
 
+    const [nftTransactions, setNftsTransactions] = useState([]);
 
     useEffect(()=>{
-     let filteredTransfers = allTransfers.filter(transfer=>{
-     if (transfer.category === 'internal'){
-         return transfer;
-     }
-     })
-     setInternalTransfers(filteredTransfers);
-    }, [allTransfers]);
-    
-
+        let filteredTransactions = allTransfers.filter(transfer=>{
+            if (transfer.category === 'NFT'){
+                return transfer;
+            }
+        })
+        setNftsTransactions(filteredTransactions);
+        console.log("nfts:", nftTransactions);
+    }, [])
     return(
         <div>
             <Table striped bordered hover>
@@ -33,12 +32,12 @@ function InternalTransactions(props){
                 </tr>
             </thead>
             <tbody>
-                {internalTransfers.map( (transfer,index)=>{
+                {nftTransactions.map( (transfer,index)=>{
                     if (transfer.value === null){
                         transfer.value = "-"
                     }
                 return (
-                <tr key={index} className="table-row">
+                <tr key={"0x"+index} className="table-row">
                     <td><Link to={`/tx/${transfer.hash}`}>{transfer.hash.slice(0,20)+"..."}</Link></td>
                     <td>{parseInt(transfer.blockNum).toLocaleString('en-US')}</td>
                     <td>{transfer.category}</td>
@@ -53,5 +52,4 @@ function InternalTransactions(props){
         </div>
     )
 }
-
-export default InternalTransactions;
+export default NftTransactions;

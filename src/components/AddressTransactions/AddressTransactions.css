@@ -16,8 +16,62 @@
     width: 100%;
 }
 
-.centered{
+.account-container{
     margin: 0 auto;
+    width: 90%;
+}
+.flex-row-alligned{
     display: flex;
     justify-content: center;
+}
+
+.flex-row-full{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.label {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+
+
+.account-card{
+    border: 1px #0099ff solid;
+    margin-bottom: 55px;
+    padding: 15px 25px 15px 25px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color:rgba(255, 255, 255, 0.671);
+}
+
+.small-divider{
+    margin: 0 auto;
+    width: 33%;
+    height: 1px;
+    border-bottom: 1px #0099ff solid;
+    margin: 20px 0px;
+}
+
+.icon-margin-l{
+    margin-left: 10px;
+}
+
+.account-card h5{
+    text-align: center;
+    font-weight: bold;
+}
+
+.latest-tx{
+    margin-bottom: 25px;
+}
+
+.flex-column{
+    display: flex;
+    flex-direction: column;
+    margin: 15px 25px 15px 25px;
 }
