@@ -1,128 +1,44 @@
-# Ethereum Block Explorer
+# CodeX DAO Xplorer: An Ethereum Block Explorer
 
-The lessons this week covered the Ethereum JSON-RPC API and the `ethers.js` library giving us the ability to query the Ethereum blockchain and make transactions!
+The CodeX DAO is proud to introduce it's own Ethereum Block Explorer and Analytics platform to easily navigate and track your transactions, addresses and  be updated on the Blocks' demand rate.
 
-Let's put that knowledge to the test by building our very own **Ethereum Block Explorer**!
-
-Blockexplorers give us the ability to view lots of different information about the blockchain including data about:
-  * the blockchain network itself
-  * blocks in the blockchain
-  * transactions in a block
-  * accounts
-  * and many other things
+ This <strong>CodeXplorer</strong> platform give us the ability to view lots of different information about the blockchain including data about:
+  * The blockchain network itself
+  * Blocks in the blockchain
+  * Transactions in a block
+  * Accounts' balance data
+  * Accounts' historical data
+  * Transactions' data
   
-[Etherscan](https://etherscan.io/) is a good example of an Ethereum blockexplorer. Check it out to get familiar with how blockexplorers generally work.
-
-This particular project is very much open-ended. We'll add some challenges here to get your imagination going, but use Etherscan as a guide for features you might consider building in your project.
-
 ## Getting Started
 
-Clone this project to pull down some basic starter code.
+You can find the deployed version of our Block Explorer <a href="https://codex-dao-blockexplorer.vercel.app">here</a>
 
-After that cd into the base directory of the project and run `npm install` to download all the project dependencies.
+## What can you do on CodeXplorer?
 
-In this project we chose to use React for a front-end and added minimal front-end code to get you going, but feel free to use any front-end stack you like.
+- Consult any Address' ETH Balance and value.
+- Check the status of the latest block mined in the Ethereum blockchain, as well as the amount of ETH burnt in fees and the block demand fillrate.
+- Verify the status and data of any transaction.
+- Consult the transactions being included at every mined block.
+- Consult an Accounts' historial transaction data, categorized ("NFT", "Token Swap", "Internal", "ERC20" or "External" transfer transactions).
 
-Unlike the lessons this week that used the Ethereum JSON-RPC API and the `ethers.js` library to communicate with the Ethereum network, the starter code in this project uses the [AlchemySDK](https://docs.alchemy.com/reference/alchemy-sdk-quickstart?a=eth-bootcamp). The AlchemySDK's core package wraps almost all of the `ethers.js` provider functionality that we learned about and should feel very familiar to you. 
 
-For example, the following `ethers.js` code
-```js
-const blockNumber = await provider.getBlockNumber();
-```
-can be written using the AlchemySDK like so:
-```js
-const blockNumber = await alchemy.core.getBlockNumber()
-```
-Another `ethers.js ` example
-```js
-const transcations = await provider.getBlockWithTransactions(SOME_BLOCK_NUMBER)
-```
-translates to
-```js
-const transactions = await alchemy.core.getBlockWithTransactions(SOME_BLOCK_NUMBER)
-```
-and so on.
+## Future Updates
 
-There are some `ethers.js` provider functions that are not often-used and therefore not included in `alchemy.core`. But if you ever need the full ethers provider functionality you can access the provider directly with the following code:
-```js
-const ethersProvider = await alchemy.config.getProvider();
-```
+We will frequently be updating and upgrading our Block Explorer features and design to allow our users to consult additional information.
 
-You can find lots of good docs on the AlchemySDK here:
-  * [API Quickstart](https://docs.alchemy.com/reference/alchemy-sdk-quickstart?a=eth-bootcamp)
-  * [API Overview](https://docs.alchemy.com/reference/api-overview?a=eth-bootcamp)
 
-Alright, without further ado, let's get started!
+## Leaving Feedback
 
-## 1. Create a unique Alchemy API key
+Don't hesitate to leave comments on this github repo as to the features or functionalities you would like to be able to consult through our Block explorer and we will work on it.
 
-If you have not already done so, create a unique Alchemy API Mainnet key
-for your project as [described here](https://docs.alchemy.com/reference/api-overview?a=eth-bootcamp).
 
-## 2. Add your API key to as an environment variable for the project
+## Technologies Used
 
-Create an empty `.env` file in the base directory of this project.
+* Our platform uses the ReactJs framework coupled with NodeJs, mixed with a multitude of API request calls (axios).
 
-Add the following line to the `.env` file replacing `YOUR_ALCHEMY_API_KEY` with your api key.
+* We leverage the [AlchemySDK](https://docs.alchemy.com/reference/alchemy-sdk-quickstart?a=eth-bootcamp) API methods to query the Ethereum blockchain. The AlchemySDK's core package wraps almost all of the `ethers.js` provider functionality.
 
-```sh
-REACT_APP_ALCHEMY_API_KEY=YOUR_ALCHEMY_API_KEY
-```
+You can find additional information regarding the AlchemySDK documentation here:
+  * [API Quickstart](https://docs.alchemy.com/reference/alchemy-sdk-quickstart)
 
-Do not remove the `REACT_APP_` prefix. React uses that to import env variables.
-
-**⚠️ Note**
-
-> Your Alchemy API Mainnet Key is a sensitive piece of data. If we were\
-> building an enterprise app to conquer the world we would never place\
-> this sensitive data in the client code of our blockexplorer project that\
-> could potentially be read by anyone.
->
-> But hey, we're just learning this stuff right now, not conquering anything\
-> yet! :-) It won't be the end of the world to put the Alchemy API key in our\
-> front-end code for this project.
-
-## 3. Start the webserver
-
-`npm start`
-
-Running the command above will run the app in the development mode. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The webpage will automatically reload when you make code changes.
-
-What you'll see in the browser is Ethereum Mainnet's current block number. Not very exciting, but that's where you come in to save the day!
-
-## 4. Make the blockexplorer cool!
-
-The starter code pulls down the current block number for you.
-
-Can you get more information about the current block and display it in the page?
-Take a look at [alchemy.core.getBlock()](https://docs.alchemy.com/reference/sdk-getblock?a=eth-bootcamp) for how you might go about that.
-
-Blocks contains transactions. Can you get the list of transactions for a given block? Can you use [alchemy.core.getBlockWithTransactions()](https://docs.alchemy.com/reference/sdk-getblockwithtransactions?a=eth-bootcamp) for this?
-
-How about getting details for individual transactions? The [alchemy.core.getTransactionReceipt()](https://docs.alchemy.com/reference/sdk-gettransactionreceipt?a=eth-bootcamp) looks handy.
-
-## 5. More ideas to think about
-
-- Connecting the dots.
-  - Allow users to click on a block listed in the webpage to get the block's details including its list of transactions
-  - From the list of transactions allow users to click on specific transactions to get the details of the transaction
-- Make an accounts page where a user can look up their balance or someone else's balance
-
-## 6. Supercharge your blockexplorer using AlchemySDK's specialized APIs
-
-By using the AlchemySDK you can really supercharge your projects with additional API functionality that isn't included in the `ethers.js` package including:
-  * NFT methods
-  * WebSocket methods
-  * Alchemy's Transact API functionality
-  * endpoints for using Alchemy's Notify Webhooks
-
-Read more about the above in the [Alchemy SDK Surface docs](https://docs.alchemy.com/reference/alchemy-sdk-api-surface-overview?a=eth-bootcamp). Using the SDK can implement the following features?
-
-- Given a contract address and token id, can you get the NFT's metadata?
-- What is the floor price of an NFT right now?
-- Did a pending transaction get mined?
-- What transfers did an address receive this year?
-
-Good luck and have fun!
