@@ -4,6 +4,7 @@ import BlockTransactions from "../../components/BlockTransactions/BlockTransacti
 import './BlockPage.css'
 import { Button } from "react-bootstrap";
 import { MutatingDots } from "react-loader-spinner";
+import BlockInfo from "../../components/BlockInfo/BlockInfo";
 
 
 function BlockPage(props){
@@ -18,6 +19,7 @@ function BlockPage(props){
         const fetchBlock = async () =>{
             const blockFetched = await alchemy.core.getBlockWithTransactions(blockId);
             console.log("block:", blockFetched)
+            setBlock(blockFetched);
             setBlockTransactions(blockFetched.transactions);
             setTimeout(()=>{
                 setIsLoading(false);
@@ -42,9 +44,14 @@ function BlockPage(props){
       wrapperStyle={{}}
       wrapperClass=""
       visible={true}
-     /></div> : <div className="block-tx-container">
+     /></div> : 
+    <div> 
+        <BlockInfo block={block}/>
+        {blockTransactions.length>1 &&
+     <div className="block-tx-container">
         <h1 className="margin-b">Block Transactions</h1>
-        <BlockTransactions blockTransactions={blockTransactions}/>
+         <BlockTransactions blockTransactions={blockTransactions}/>
+        </div>}
         </div>}
         
         </div>

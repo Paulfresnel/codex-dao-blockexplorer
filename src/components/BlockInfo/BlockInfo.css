@@ -1,0 +1,13 @@
+code{
+    font-weight: bold;
+    text-decoration: none;
+}
+
+Link {
+    text-decoration: none;
+}
+
+.badge-big{
+    font-weight: bold;
+    font-size: 1.1rem;
+}

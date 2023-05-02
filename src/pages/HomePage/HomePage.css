@@ -1,0 +1,28 @@
+
+
+.intro{
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+}
+
+.branded{
+    background:linear-gradient(140deg, #36beff, #733ff1);
+    -webkit-background-clip: text;
+    color: transparent;
+    font-weight: bold;
+    font-size: 1.75rem;
+}
+
+.italic{
+    font-style: italic;
+}
+
+.small-divider{
+    text-align: center;
+    width: 25%;
+    border-bottom: 1px #36beff solid;
+    height: 1px;
+    margin: 0 auto !important;
+    margin-bottom: 25px !important;
+}

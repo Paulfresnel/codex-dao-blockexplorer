@@ -6,7 +6,7 @@ import { Button } from "react-bootstrap";
 
 
 function AddressPage(props){
-    const navigate = useNavigate();
+    const navigate = useNavigate()
     const { addressId } = useParams();
 
     const {alchemy} = props;

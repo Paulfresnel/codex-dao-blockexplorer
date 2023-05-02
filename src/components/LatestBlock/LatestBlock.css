@@ -9,6 +9,10 @@
     margin-top: 55px;
 }
 
+.table-row-2 > td{
+    text-align: center;
+}
+
 .flex-row-icons{
     margin: 0 auto;
     display: flex;

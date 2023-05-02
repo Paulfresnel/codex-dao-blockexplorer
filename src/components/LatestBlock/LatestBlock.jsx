@@ -18,7 +18,6 @@ function LatestBlock(props){
     const [isLoading, setIsLoading] = useState(true);
     const [blockTime, setBlockTime] = useState('');
     const [burntFees, setBurntFees] = useState(0);
-    const [blockHash, setBlockHash] = useState("");
     const {alchemy} = props;
 
     const prevBlock = async () =>{
@@ -64,7 +63,6 @@ function LatestBlock(props){
       let baseFeePerGas = blockInfo.baseFeePerGas._hex;
       let burntFees = (baseFeePerGas * parseInt(blockInfo.gasUsed._hex))/(10**18);
       setBurntFees(burntFees);
-      
       setBlockTime(blockDate);
     }
 
@@ -72,7 +70,7 @@ function LatestBlock(props){
     async function getBlockNumber() {
       setBlockNumber(await alchemy.core.getBlockNumber());
       const blockInfo = await alchemy.core.getBlock(blockNumber);
-      console.log(blockInfo);
+      console.log("block Info:", blockInfo);
       setBlockTransactions(blockInfo.transactions);
       setGasUsed(parseInt(blockInfo.gasUsed._hex));
       let fillRate = parseInt(blockInfo.gasUsed._hex)/parseInt(blockInfo.gasLimit._hex)
@@ -104,7 +102,7 @@ function LatestBlock(props){
         {isLoading && <div className="centered"><MutatingDots 
            height="100"
            width="100"
-           color="#6d83ff"
+           color="black"
            secondaryColor= '#0099ff'
            radius='12.5'
            ariaLabel="mutating-dots-loading"
@@ -112,7 +110,7 @@ function LatestBlock(props){
            wrapperClass=""
            visible={true}
         /></div>}
-        {!isLoading && <div><h2>Latest Mined Blocks</h2>
+        {!isLoading && <div>
         <div className="flex-row-icons">
         <i onClick={prevBlock} className="bi bi-arrow-left-circle-fill"></i>
         <i onClick={nextBlock} className="bi bi-arrow-right-circle-fill"></i>
@@ -130,11 +128,11 @@ function LatestBlock(props){
                     </tr>
                 </thead>
                 <tbody>
-                    {blockTransactions.slice(0,5).map(tx=>{
-                        return <tr>
+                    {blockTransactions.slice(0,6).map(tx=>{
+                        return <tr className="table-row-2">
                                 <td>
                                 <Link to={`/tx/${tx}`}>
-                                {`${tx.slice(0,20)}.....`}
+                                {tx}
                                 </Link>
                                 </td>
                             </tr>
