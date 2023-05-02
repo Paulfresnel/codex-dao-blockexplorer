@@ -89,7 +89,7 @@ function AddressTransactions(props){
                     className="centered"
                     height="100"
                     width="100"
-                    color="#6d83ff"
+                    color="black"
                     secondaryColor= '#0099ff'
                     radius='12.5'
                     ariaLabel="mutating-dots-loading"
@@ -117,7 +117,7 @@ function AddressTransactions(props){
                         </div>
                         <div className="flex-column">
                             <h6 className="label">ETH Value<i onClick={(e)=>fetchETHPrice(e)} class="bi bi-arrow-clockwise icon-margin-l"></i></h6>
-                            <p> {"$"+" "+ (accountBalance*ethPrice).toFixed(2)}</p>
+                            <p> {"$"+" "+ (accountBalance*ethPrice).toLocaleString('en-US')}</p>
                         </div>
                         <div className="flex-column">
                         <div className="flex-row-alligned">
@@ -126,7 +126,7 @@ function AddressTransactions(props){
                             <i class="bi bi-info-circle icon-margin-l"></i>
                             </OverlayTrigger>
                         </div>
-                            <p>{accountNonce}</p>
+                            <p>{accountNonce.toLocaleString('en-US')}</p>
                         </div>
                     </div>
                 </div>

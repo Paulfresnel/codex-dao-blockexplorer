@@ -5,6 +5,7 @@ import ProgressBar from 'react-bootstrap/ProgressBar';
 import Spinner from 'react-bootstrap/Spinner';
 import Table from 'react-bootstrap/Table';
 import { MutatingDots } from "react-loader-spinner";
+import { toHex } from "alchemy-sdk";
 
 
 
@@ -17,6 +18,7 @@ function LatestBlock(props){
     const [isLoading, setIsLoading] = useState(true);
     const [blockTime, setBlockTime] = useState('');
     const [burntFees, setBurntFees] = useState(0);
+    const [blockHash, setBlockHash] = useState("");
     const {alchemy} = props;
 
     const prevBlock = async () =>{
@@ -124,7 +126,7 @@ function LatestBlock(props){
             <Table striped bordered hover>
                 <thead>
                     <tr>
-                        <th>Block Transactions ({blockTransactions.length})</th>
+                        <th>Block Transactions <Link to={`block/${toHex(blockNumber)}`}>({blockTransactions.length})</Link></th>
                     </tr>
                 </thead>
                 <tbody>

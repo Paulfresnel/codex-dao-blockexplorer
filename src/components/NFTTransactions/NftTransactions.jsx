@@ -39,7 +39,7 @@ function NftTransactions(props){
                 return (
                 <tr key={"0x"+index} className="table-row">
                     <td><Link to={`/tx/${transfer.hash}`}>{transfer.hash.slice(0,20)+"..."}</Link></td>
-                    <td>{parseInt(transfer.blockNum).toLocaleString('en-US')}</td>
+                    <td><Link to={`/block/${transfer.blockNum}`}>{parseInt(transfer.blockNum).toLocaleString('en-US')}</Link></td>
                     <td>{transfer.category}</td>
                     <td><Link to={`/address/${transfer.from}`}>{transfer.from.slice(0,20)+"..."}</Link></td>
                     <td><Link to={`/address/${transfer.to}`}>{transfer.to.slice(0,20)+"..."}</Link></td>

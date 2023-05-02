@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams, Link} from 'react-router-dom'
+import { useParams, Link, useNavigate} from 'react-router-dom'
 import { MutatingDots } from 'react-loader-spinner';
 import "./TransactionPage.css"
 import ClipboardJS from 'clipboard';
@@ -7,11 +7,14 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Badge from 'react-bootstrap/Badge';
 import axios from 'axios';
+import { Button } from 'react-bootstrap';
+
 
 
 new ClipboardJS(".clipboarded");
 
 function TransactionPage(props){
+    const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true);
     const [tx, setTx] = useState({});
     const [latestBlock, setLatestBlock] = useState(0);
@@ -124,6 +127,8 @@ function TransactionPage(props){
 
     return (
         <div>
+        <Button variant='primary' className='go-back' onClick={()=>navigate(-1)}>Go Back</Button>
+        <div className='divider'/>
     <h1 className='main'>Transaction Details</h1>
     {isLoading && <div className='centered'>
     <MutatingDots 
@@ -234,7 +239,7 @@ function TransactionPage(props){
             </div>
             <div className='tx-flex-row-internal'>
                 <p>{txValue/(10**18)} ETH</p>
-                <Badge bg="success"><span className='money-value'> $ {((txValue/(10**18))*ethPrice).toFixed(2)} </span></Badge>
+                <Badge bg="success"><span className='money-value'> $ {((txValue/(10**18))*ethPrice).toLocaleString('en-US')} </span></Badge>
                 <i onClick={()=>fetchETHPrice()} class="bi bi-arrow-clockwise icon-m-l"></i>
             </div>
         </div>

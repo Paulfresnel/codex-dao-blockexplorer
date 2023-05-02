@@ -4,6 +4,7 @@ import Header from './components/Header/Header';
 import LatestBlock from './components/LatestBlock/LatestBlock';
 import TransactionPage from './pages/TransactionPage/TransactionPage';
 import ErrorPage from './pages/ErrorPage/ErrorPage';
+import BlockPage from './pages/BlockPage/BlockPage';
 
 import './App.css';
 import HomePage from './pages/HomePage/HomePage';
@@ -29,6 +30,7 @@ function App() {
   <Routes>
   <Route path={"*"} element={<ErrorPage/>}/>
   <Route path={"/"} element={<HomePage alchemy={alchemy}/>}/>
+  <Route path={"/block/:blockId"} element={<BlockPage alchemy={alchemy}/>}/>
   <Route path={"/address/:addressId"} element={<AddressPage alchemy={alchemy}/>}/>
   <Route path={"/tx/:txId"} element={<TransactionPage alchemy={alchemy}/>}/>
   </Routes>
