@@ -37,8 +37,6 @@ Don't hesitate to leave comments on this github repo as to the features or funct
 
 * Our platform uses the ReactJs framework coupled with NodeJs, mixed with a multitude of API request calls (axios).
 
-* We leverage the [AlchemySDK](https://docs.alchemy.com/reference/alchemy-sdk-quickstart?a=eth-bootcamp) API methods to query the Ethereum blockchain. The AlchemySDK's core package wraps almost all of the `ethers.js` provider functionality.
+* We leverage the [AlchemySDK](https://docs.alchemy.com/reference/alchemy-sdk-quickstart) API methods to query the Ethereum blockchain. The AlchemySDK's core package wraps almost all of the `ethers.js` provider functionality.
 
-You can find additional information regarding the AlchemySDK documentation here:
-  * [API Quickstart](https://docs.alchemy.com/reference/alchemy-sdk-quickstart)
 
