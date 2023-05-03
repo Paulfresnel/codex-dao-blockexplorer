@@ -27,7 +27,7 @@ function AddressTransactions(props){
 
     const renderNonceTip = (props) => (
     <Tooltip id="button-tooltip" {...props}>
-      Number of transactions realized of the Address.
+      Number of transactions sent by the Address.
     </Tooltip>
     );
 
@@ -89,8 +89,8 @@ function AddressTransactions(props){
                     className="centered"
                     height="100"
                     width="100"
-                    color="black"
-                    secondaryColor= '#0099ff'
+                    color="#733ff1"
+                    secondaryColor= '#36beff'
                     radius='12.5'
                     ariaLabel="mutating-dots-loading"
                     wrapperStyle={{}}

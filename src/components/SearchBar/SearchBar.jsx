@@ -33,7 +33,7 @@ function SearchBar(){
         <div >
         <form className='form' onSubmit={(e)=>userQuery(e)}>
         
-        <input onChange={(e)=>setQuery(e.target.value)} className="large-input" placeholder="Search by Addres,  Block Number or Transaction Hash"></input>
+        <input onChange={(e)=>setQuery(e.target.value)} className="large-input" placeholder="Search by Address, Block Number or Transaction Hash"></input>
        <Button onClick={(e)=>userQuery(e)} className='search-btn' variant="primary"><i className="bi bi-search"></i> Search</Button>{' '}
         </form>
         </div>

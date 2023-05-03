@@ -9,7 +9,7 @@ function BlockTransactions(props){
 
 
     return(
-        <div>
+        <div className="block-tx-container">
     <Table striped bordered hover>
             <thead>
                 <tr>

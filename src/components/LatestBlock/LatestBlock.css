@@ -2,11 +2,31 @@
 .latest-block{
     
     margin: 0 auto;
-    border: 1px rgb(50, 78, 231) solid;
+    border: 2px rgb(50, 78, 231) solid;
+    outline: 1px rgb(180, 207, 220) solid;
+    box-shadow: 2px 2px 5px rgb(50, 78, 231);
     width: 75%;
     padding: 40px;
     border-radius: 75px 5px 75px 5px;
     margin-top: 55px;
+    color: black;
+    background-color: rgb(180, 207, 220);
+}
+
+.margin-bottom{
+    padding-bottom: 100px;
+}
+
+.bi{
+    font-size:1.5rem ;
+}
+
+tr {
+    border: 1px rgb(50, 78, 231) solid;
+}
+
+tr th {
+    color: black;
 }
 
 .table-row-2 > td{

@@ -98,12 +98,12 @@ function LatestBlock(props){
   }, []);
 
     return(
-        <div>
+        <div className="margin-bottom">
         {isLoading && <div className="centered"><MutatingDots 
            height="100"
            width="100"
-           color="black"
-           secondaryColor= '#0099ff'
+           color="#733ff1"
+           secondaryColor= '#36beff'
            radius='12.5'
            ariaLabel="mutating-dots-loading"
            wrapperStyle={{}}

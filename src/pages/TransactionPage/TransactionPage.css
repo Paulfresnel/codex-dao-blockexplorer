@@ -10,11 +10,14 @@
     width: 80%;
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
+    height: 600px;
     border: 1px black solid;
     padding: 50px 45px 40px 45px;
-    background: rgba(255, 255, 255, 0.627);
+    background: rgb(180, 207, 220);
     border-radius: 15px;
     box-shadow: 2px 2px 10px #0099ff;
+    color: black;
 }
 
 .go-back{
@@ -27,8 +30,11 @@
 }
 
 .badge{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-left: 15px;
-    height: 25px;
+    height: 35px;
     text-shadow: 1px 1px 3px black;
 }
 
@@ -37,12 +43,10 @@
 }
 
 .money-value{
-    height: 38px;
     font-size: 1.1rem;
 }
 
 .money-value-fee{
-    height: 38px;
     font-size: 1.05rem;
 }
 
@@ -76,6 +80,11 @@
 .tx-flex-row-internal {
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+.tx-flex-row-internal p {
+    margin-bottom: 0;
 }
 
 .clipboarded{

@@ -135,8 +135,8 @@ function TransactionPage(props){
     className="centered"
       height="100"
       width="100"
-      color="#6d83ff"
-      secondaryColor= '#0099ff'
+      color="#36beff"
+      secondaryColor= '#733ff1'
       radius='12.5'
       ariaLabel="mutating-dots-loading"
       wrapperStyle={{}}

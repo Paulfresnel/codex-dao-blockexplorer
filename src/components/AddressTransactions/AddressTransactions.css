@@ -6,7 +6,7 @@
     flex-direction: column;
     border: 1px black solid;
     padding: 25px 45px 25px 45px;
-    background: rgba(255, 255, 255, 0.627);
+    background-color: rgb(180, 207, 220);
     border-radius: 15px;
     box-shadow: 2px 2px 10px #0099ff;
 }
@@ -23,6 +23,11 @@
 .flex-row-alligned{
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+.flex-row-alligned > p {
+    margin-bottom: 0;
 }
 
 .flex-row-full{
@@ -46,7 +51,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color:rgba(255, 255, 255, 0.671);
+    background-color: rgb(180, 207, 220);
+    color: black;
 }
 
 .small-divider{

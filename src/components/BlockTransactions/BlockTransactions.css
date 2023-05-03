@@ -2,3 +2,11 @@
 .tx-row td{
     text-align: center;
 }
+
+.block-tx-container table{
+    background-color: rgb(180, 207, 220);
+}
+
+.block-tx-container{
+    padding-bottom: 55px;
+}
